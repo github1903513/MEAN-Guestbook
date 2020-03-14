@@ -5,6 +5,15 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 5000;
+var http = require("http");
+http
+  .createServer(function(request, response) {
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    response.end("this is the end");
+  })
+  .listen(PORT);
+
 //show frontpage
 app.use(express.static("demosite/"));
 
@@ -118,4 +127,4 @@ app.get("*", function(req, res) {
   res.send("can't find the requested page!", 404);
 });
 
-app.listen(8081);
+//app.listen(8081);
